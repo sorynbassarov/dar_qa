@@ -1,0 +1,21 @@
+version: '3'
+
+tasks:
+  test:
+    cmds:
+      - echo $Deleting
+      - rm -rf /Users/syrymorynbassarov/Desktop/Trade-In/qa_back_tradein/Allure
+      - echo $Testing
+      - pytest -v -s {{.CLI_ARGS}} --alluredir=/Users/syrymorynbassarov/Desktop/Trade-In/qa_back_tradein/Allure
+      - echo $Generating
+      - allure serve /Users/syrymorynbassarov/Desktop/Trade-In/qa_back_tradein/Allure
+    env:
+      Testing: Launching tests ;)
+      Deleting: Deleting Previous Allure Report ;)
+      Generating: Generating Allure Reports ;)
+  cache_clear:
+    cmds:
+      - echo $Cache_clean
+      - find . -type d -name ".pytest_cache" -print0  | xargs -0 -I {} rm -rf {}
+    env:
+      Cache_clean: Cleaning cache ;)
